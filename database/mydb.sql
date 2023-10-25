@@ -1,0 +1,15 @@
+/* EJECUTAR ESTE SCRIPT EN SU CONEXIÓN */
+
+CREATE SEQUENCE usuario_seq
+  START WITH 1
+  INCREMENT BY 1
+  NOMAXVALUE;
+
+CREATE TABLE usuario (
+    idusuario NUMBER DEFAULT usuario_seq.NEXTVAL PRIMARY KEY,
+    nombre VARCHAR2(50),
+    apellido VARCHAR2(50),
+    email VARCHAR2(100),
+    password VARCHAR2(100),
+    estatus NUMBER DEFAULT 1
+);
