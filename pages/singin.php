@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="login end">
-                                        <a class="btn btn-link" href="login.php">Volver al login</a>
+                                        <a class="btn btn-link" href="#">Volver al login</a>
                                     </div>
                                 </div>
                             </div>
@@ -65,5 +65,7 @@
         </div>
     </div>
 </div>
-
-<?php include('../templates/footer.php'); ?>
+<?php
+include('../templates/scripts.php');
+includeScript('singin');
+?>

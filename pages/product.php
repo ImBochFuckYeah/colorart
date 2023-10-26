@@ -2,14 +2,14 @@
 <?php require('../templates/sidebar.php'); ?>
 <div class="container mt-5 mb-5">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/colorful">Home</a></li>
+        <li class="breadcrumb-item"><a href="/colorart">Home</a></li>
         <li class="breadcrumb-item active">Product</li>
     </ol>
     <div class="product-description">
         <div class="card mb-4 mt-4">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="http://localhost/colorful/assets/img/products/imagecap.png"
+                    <img src="<?php $server?>/colorart/assets/img/products/imagecap.png"
                         class="img-fluid rounded-start" alt="product description">
                 </div>
                 <div class="col-md-8">
@@ -42,3 +42,4 @@
     </div>
 </div>
 <?php require('../templates/footer.php'); ?>
+<?php require('../templates/scripts.php'); ?>

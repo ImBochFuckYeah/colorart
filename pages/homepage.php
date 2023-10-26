@@ -314,5 +314,9 @@
         </div>
     </div>
 </div>
+<button class="btn btn-primary back-to-top" id="back-to-top" style="display: none;">
+    Back to Top
+</button>
 
 <?php require('../templates/footer.php'); ?>
+<?php require('../templates/scripts.php'); ?>

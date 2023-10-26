@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
     <div class="container">
-        <a href="/colorful" class="navbar-brand">Colorful</a>
+        <a href="/colorart" class="navbar-brand">ColorArt</a>
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
@@ -24,6 +24,7 @@
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                     aria-haspopup="true" aria-expanded="false">Mi cuenta</a>
                 <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Ver perfil</a>
                     <a class="dropdown-item" href="#">Ver lista de articulos</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Cerrar sesion </a>

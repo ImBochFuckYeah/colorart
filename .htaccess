@@ -1,5 +1,10 @@
 Options +FollowSymLinks
 RewriteEngine On
-RewriteBase /colorful
+RewriteBase /colorart
+
 RewriteRule ^$ pages/homepage.php [L]
-RewriteRule ^product/([0-9]+)$ pages/product.php?id=$1 [L]
+RewriteRule ^product(?:/([0-9]+))?$ pages/product.php?id=$1 [L]
+RewriteRule ^category(?:/([0-9]+))?$ pages/category.php?id=$1 [L]
+
+RewriteRule ^login$ pages/login.php [L]
+RewriteRule ^singin$ pages/singin.php [L]
