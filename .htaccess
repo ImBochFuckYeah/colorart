@@ -8,3 +8,5 @@ RewriteRule ^category(?:/([0-9]+))?$ pages/category.php?id=$1 [L]
 
 RewriteRule ^login$ pages/login.php [L]
 RewriteRule ^singin$ pages/singin.php [L]
+RewriteRule ^admin$ pages/dashboard.php [L]
+RewriteRule ^admin/edit-products$ pages/admin-products.php [L]

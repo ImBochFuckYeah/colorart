@@ -8,10 +8,10 @@ $("#submit").click(function () {
 
 function validInputs() {
     let obj = {};
-    obj.email = $("#email").val();
+    obj.username = $("#username").val();
     obj.password = $("#password").val();
 
-    if (obj.email && obj.password) {
+    if (obj.username && obj.password) {
         user = obj;
         return true;
     } else {
@@ -22,7 +22,7 @@ function validInputs() {
 
 async function authUser() {
     try {
-        const response = await fetch('../api/authlogin.php', {
+        const response = await fetch(server + '/colorart/api/authlogin.php', {
             method: 'POST',
             body: JSON.stringify(user)
         });

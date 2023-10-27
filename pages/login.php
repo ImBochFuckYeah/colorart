@@ -14,27 +14,27 @@
                             <div class="row">
                                 <div class="col-12 nl">
                                     <div class="form-group">
-                                        <label for="email" class="form-label">Email address</label>
-                                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
-                                            placeholder="Enter email">
+                                        <label for="username" class="form-label">User name</label>
+                                        <input type="text" class="form-control" id="username" aria-describedby="usernameHelp"
+                                        placeholder="Enter user name">
                                     </div>
                                 </div>
                                 <div class="col-12 nl">
                                     <div class="form-group">
                                         <label for="password" class="form-label">Password</label>
                                         <input type="password" class="form-control" id="password" placeholder="Password"
-                                            autocomplete="off">
+                                        autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="login start">
                                         <button type="button" class="btn btn-primary btn-block" id="submit">Iniciar
                                             Sesión</button>
+                                        </div>
                                     </div>
-                                </div>
                                 <div class="col-6">
                                     <div class="signup end">
-                                        <a class="btn btn-link" href="singup.php">Crear una cuenta</a>
+                                        <a class="btn btn-link" href="#">Crear una cuenta</a>
                                     </div>
                                 </div>
                             </div>
@@ -45,4 +45,7 @@
         </div>
     </div>
 </div>
-<?php include('../templates/scripts.php'); ?>
+
+<?php include('../templates/scripts.php'); includeScript('login'); ?>
+
+<?php include('../auth.php'); validAuthenticated(); ?>

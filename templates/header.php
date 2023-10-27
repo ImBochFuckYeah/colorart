@@ -18,6 +18,7 @@ $server = getMyUrl();
     <title>ColorArt</title>
     <link rel="stylesheet" href="<?php $server?>/colorart/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php $server?>/colorart/assets/css/global.css">
+    <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.6/b-2.4.2/datatables.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="spinner-overlay d-none" id="spinnerOverlay">

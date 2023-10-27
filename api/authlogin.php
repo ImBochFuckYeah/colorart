@@ -2,6 +2,12 @@
 require_once('../includes/db.php');
 $conex = new PDOConex();
 
+// Función para autenticar al usuario (por ejemplo, después de un inicio de sesión exitoso)
+function authenticateUser($user_id)
+{
+    $_SESSION['user_id'] = $user_id;
+}
+
 if (!$conex) {
     $response = array("message" => 'Error de conexión a la base de datos!', "info" => false, "error" => true);
 } else {
@@ -10,8 +16,8 @@ if (!$conex) {
 
     if (isset($json)) {
 
-        $validEmail = "SELECT idusuario FROM usuario WHERE email = '$json->email'";
-        $exec = $conex->execSQL($validEmail);
+        $validUser = "SELECT idusuario FROM usuario WHERE username = '$json->username'";
+        $exec = $conex->execSQL($validUser);
         $id = $conex->simpleValue($exec);
 
         if ($id > 0) {
@@ -29,12 +35,15 @@ if (!$conex) {
             $value = $conex->simpleValue($return);
 
             if ($value == 1) {
+
+                authenticateUser($id);
+
                 $response = array("message" => "Crendenciales validas.", "info" => false, "error" => false);
             } else {
                 $response = array("message" => "La contraseña es incorrecta.", "info" => true, "error" => false);
             }
         } else {
-            $response = array("message" => "El email no se encuentra registrado.", "info" => true, "error" => false);
+            $response = array("message" => "El usuario no se encuentra registrado.", "info" => true, "error" => false);
         }
     } else {
         $response = array("message" => "No se pudieron enviar los datos.", "info" => false, "error" => true);
