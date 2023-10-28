@@ -117,6 +117,38 @@ EXCEPTION
 END;
 /
 
+-- Crear un procedimiento almacenado para actualizar el estado de una categoría
+CREATE OR REPLACE PROCEDURE ActualizarEstadoCategoria(
+    p_id_categoria NUMBER,
+    p_nuevo_estado NUMBER
+) AS
+BEGIN
+    BEGIN
+        UPDATE categoria
+        SET estado = p_nuevo_estado
+        WHERE id_categoria = p_id_categoria;
+        
+        IF SQL%ROWCOUNT = 1 THEN
+            COMMIT;
+            DBMS_OUTPUT.PUT_LINE('Estado de la categoría actualizado con éxito.');
+        ELSE
+            ROLLBACK;
+            DBMS_OUTPUT.PUT_LINE('La categoría no se encontró.');
+        END IF;
+    EXCEPTION
+        WHEN OTHERS THEN
+            ROLLBACK;
+            DBMS_OUTPUT.PUT_LINE('Error al actualizar el estado de la categoría: ' || SQLERRM);
+    END;
+END;
+/
+
+-- Crear una vista para la tabla "categoria"
+CREATE OR REPLACE VIEW vista_categoria AS
+SELECT id_categoria, descripcion, estado
+FROM categoria;
+
+
 /* TABLA MARCA */
 
 -- Crear una secuencia para id_marca
