@@ -3,7 +3,7 @@
         <a href="/colorart" class="navbar-brand">ColorArt</a>
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav me-auto">
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <a class="nav-link active" href="#">Home
                         <span class="visually-hidden">(current)</span>
                     </a>
@@ -16,7 +16,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">About</a>
-                </li>
+                </li>-->
             </ul>
         </div>
         <!--<ul class="navbar-nav me-auto">
