@@ -43,7 +43,7 @@ async function removeAlert() {
 function timerRemove() {
   setTimeout(() => {
     removeAlert();
-  }, 10000);
+  }, 3000);
 }
 
 async function alertError(content) {

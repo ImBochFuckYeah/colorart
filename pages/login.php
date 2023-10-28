@@ -1,4 +1,4 @@
-<?php include('../templates/header.php'); ?>
+<?php require_once('../templates/header.php'); ?>
 
 <div class="content">
     <div id="alert"></div>
@@ -46,6 +46,6 @@
     </div>
 </div>
 
-<?php include('../templates/scripts.php'); includeScript('login'); ?>
+<?php require_once('../templates/scripts.php'); includeScript('login'); ?>
 
-<?php include('../auth.php'); validAuthenticated(); ?>
+<?php require_once('../auth.php'); ?>

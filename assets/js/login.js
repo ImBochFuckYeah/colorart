@@ -36,6 +36,7 @@ async function authUser() {
             alertInfo(content);
         } else {
             alertSuccess(content);
+            window.location.href =  server + "/colorart/admin";
         }
     } catch (error) {
         await alertError('error: ' + error);

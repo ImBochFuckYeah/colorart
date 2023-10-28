@@ -21,7 +21,7 @@ let table = new DataTable('#myTable', {
             action: function (e, dt, node, config) {
                 alert('Button activated');
             },
-            className: 'btn btn-info btn-sm' // Agrega la clase de Bootstrap aquí
+            className: 'btn btn-outline-primary' // Agrega la clase de Bootstrap aquí
         }
     ],
     columns: [

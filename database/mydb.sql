@@ -48,6 +48,27 @@ BEGIN
     FROM dual;
 END;
 
+-- Crear un procedimiento almacenado para insertar un producto
+CREATE OR REPLACE PROCEDURE InsertarProducto(
+    p_titulo VARCHAR2,
+    p_descripcion CLOB,
+    p_precio NUMBER,
+    p_url VARCHAR2,
+    p_id_marca NUMBER,
+    p_estado NUMBER
+) AS
+BEGIN
+    INSERT INTO producto (titulo, descripcion, precio, url, id_marca, estado)
+    VALUES (p_titulo, p_descripcion, p_precio, p_url, p_id_marca, p_estado);
+    COMMIT;
+    DBMS_OUTPUT.PUT_LINE('Producto insertado correctamente');
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        DBMS_OUTPUT.PUT_LINE('Error al insertar el producto: ' || SQLERRM);
+END;
+/
+
 /* TABLA CATEGORIA */
 
 -- Crear una secuencia para id_categoria
@@ -76,6 +97,23 @@ BEGIN
     SELECT categoria_seq.NEXTVAL
     INTO :NEW.id_categoria
     FROM dual;
+END;
+/
+
+-- Crear un procedimiento almacenado para insertar una categoría
+CREATE OR REPLACE PROCEDURE InsertarCategoria(
+    p_descripcion VARCHAR2,
+    p_estado NUMBER
+) AS
+BEGIN
+    INSERT INTO categoria (descripcion, estado)
+    VALUES (p_descripcion, p_estado);
+    COMMIT;
+    DBMS_OUTPUT.PUT_LINE('Categoría insertada correctamente');
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        DBMS_OUTPUT.PUT_LINE('Error al insertar la categoría: ' || SQLERRM);
 END;
 /
 
@@ -109,6 +147,54 @@ BEGIN
     FROM dual;
 END;
 /
+
+-- Crear un procedimiento almacenado para insertar una marca
+CREATE OR REPLACE PROCEDURE InsertarMarca(
+    p_descripcion VARCHAR2,
+    p_estado NUMBER
+) AS
+BEGIN
+    INSERT INTO marca (descripcion, estado)
+    VALUES (p_descripcion, p_estado);
+    COMMIT;
+    DBMS_OUTPUT.PUT_LINE('Marca insertada correctamente');
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        DBMS_OUTPUT.PUT_LINE('Error al insertar la marca: ' || SQLERRM);
+END;
+/
+
+-- Crear un procedimiento almacenado para actualizar el estado de una marca
+CREATE OR REPLACE PROCEDURE ActualizarEstadoMarca(
+    p_id_marca NUMBER,
+    p_nuevo_estado NUMBER
+) AS
+BEGIN
+    BEGIN
+        UPDATE marca
+        SET estado = p_nuevo_estado
+        WHERE id_marca = p_id_marca;
+        
+        IF SQL%ROWCOUNT = 1 THEN
+            COMMIT;
+            DBMS_OUTPUT.PUT_LINE('Estado de la marca actualizado con éxito.');
+        ELSE
+            ROLLBACK;
+            DBMS_OUTPUT.PUT_LINE('La marca no se encontró.');
+        END IF;
+    EXCEPTION
+        WHEN OTHERS THEN
+            ROLLBACK;
+            DBMS_OUTPUT.PUT_LINE('Error al actualizar el estado de la marca: ' || SQLERRM);
+    END;
+END;
+/
+
+-- Crear una vista para la tabla "marca"
+CREATE OR REPLACE VIEW vista_marca AS
+SELECT id_marca, descripcion, estado
+FROM marca;
 
 /* TABLA PRODUCTO_CATEGORIA */
 

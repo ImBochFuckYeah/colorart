@@ -1,12 +1,9 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 require_once('../includes/db.php');
 $conex = new PDOConex();
-
-// Función para autenticar al usuario (por ejemplo, después de un inicio de sesión exitoso)
-function authenticateUser($user_id)
-{
-    $_SESSION['user_id'] = $user_id;
-}
 
 if (!$conex) {
     $response = array("message" => 'Error de conexión a la base de datos!', "info" => false, "error" => true);
@@ -35,9 +32,7 @@ if (!$conex) {
             $value = $conex->simpleValue($return);
 
             if ($value == 1) {
-
-                authenticateUser($id);
-
+                $_SESSION['user_id'] = $id;
                 $response = array("message" => "Crendenciales validas.", "info" => false, "error" => false);
             } else {
                 $response = array("message" => "La contraseña es incorrecta.", "info" => true, "error" => false);

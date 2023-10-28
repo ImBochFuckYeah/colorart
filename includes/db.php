@@ -49,6 +49,15 @@ class PDOConex
         }
     }
 
+    public function toJson($response)
+    {
+        $jsonArray = [];
+        while ($row = $response->fetch(PDO::FETCH_ASSOC)) {
+            $jsonArray[] = $row;
+        }
+        return $jsonArray;
+    }
+    
     public function toJsonArray($response)
     {
         $jsonArray = [];
@@ -66,7 +75,7 @@ class PDOConex
             if ($result === false) {
                 return 0; // Valor predeterminado si no se encuentra ningún resultado.
             }
-            return $result;
+            return intval($result);
         }
         return 0;
     }
