@@ -7,7 +7,7 @@ if (!$conex) {
 } else {
     $get = "SELECT * FROM vista_categoria";
     $result = $conex->execSQL($get);
-    $result = $conex->toJson($result);
+    $result = $conex->toArray($result);
 
     $resdata = array();
     

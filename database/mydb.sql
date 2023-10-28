@@ -27,7 +27,7 @@ NOCYCLE;
 CREATE TABLE producto (
     id_producto NUMBER,
     titulo VARCHAR2(255),
-    descripcion CLOB,
+    descripcion VARCHAR2(800),
     precio NUMBER(10, 2),
     url VARCHAR2(500),
     id_marca NUMBER,
@@ -48,26 +48,80 @@ BEGIN
     FROM dual;
 END;
 
--- Crear un procedimiento almacenado para insertar un producto
+-- Crear un procedimiento almacenado para insertar un producto y su relación con categoría
 CREATE OR REPLACE PROCEDURE InsertarProducto(
     p_titulo VARCHAR2,
-    p_descripcion CLOB,
+    p_descripcion VARCHAR2,
     p_precio NUMBER,
     p_url VARCHAR2,
     p_id_marca NUMBER,
+    p_id_categoria NUMBER,
     p_estado NUMBER
 ) AS
 BEGIN
-    INSERT INTO producto (titulo, descripcion, precio, url, id_marca, estado)
-    VALUES (p_titulo, p_descripcion, p_precio, p_url, p_id_marca, p_estado);
-    COMMIT;
-    DBMS_OUTPUT.PUT_LINE('Producto insertado correctamente');
-EXCEPTION
-    WHEN OTHERS THEN
-        ROLLBACK;
-        DBMS_OUTPUT.PUT_LINE('Error al insertar el producto: ' || SQLERRM);
+    DECLARE
+        v_id_producto NUMBER;
+    BEGIN
+        INSERT INTO producto (titulo, descripcion, precio, url, id_marca, estado)
+        VALUES (p_titulo, p_descripcion, p_precio, p_url, p_id_marca, p_estado)
+        RETURNING id_producto INTO v_id_producto;
+        
+        INSERT INTO producto_categoria (id_producto, id_categoria, estado)
+        VALUES (v_id_producto, p_id_categoria, p_estado);
+        
+        COMMIT;
+        DBMS_OUTPUT.PUT_LINE('Producto y relación con categoría insertados correctamente');
+    EXCEPTION
+        WHEN OTHERS THEN
+            ROLLBACK;
+            DBMS_OUTPUT.PUT_LINE('Error al insertar el producto y la relación con categoría: ' || SQLERRM);
+    END;
 END;
 /
+
+-- Crear un procedimiento almacenado para cambiar el estado de un producto
+CREATE OR REPLACE PROCEDURE CambiarEstadoProducto(
+    p_id_producto NUMBER,
+    p_nuevo_estado NUMBER
+) AS
+BEGIN
+    BEGIN
+        UPDATE producto
+        SET estado = p_nuevo_estado
+        WHERE id_producto = p_id_producto;
+        
+        IF SQL%ROWCOUNT = 1 THEN
+            COMMIT;
+            DBMS_OUTPUT.PUT_LINE('Estado del producto actualizado con éxito.');
+        ELSE
+            ROLLBACK;
+            DBMS_OUTPUT.PUT_LINE('El producto no se encontró.');
+        END IF;
+    EXCEPTION
+        WHEN OTHERS THEN
+            ROLLBACK;
+            DBMS_OUTPUT.PUT_LINE('Error al cambiar el estado del producto: ' || SQLERRM);
+    END;
+END;
+/
+
+-- Crear una vista para obtener datos detallados de producto, marca y categoría
+CREATE OR REPLACE VIEW vista_producto AS
+SELECT
+    p.id_producto,
+    p.titulo,
+    p.descripcion AS descripcion_producto,
+    p.precio,
+    p.url,
+    m.id_marca,
+    m.descripcion AS descripcion_marca,
+    c.id_categoria,
+    c.descripcion AS descripcion_categoria,
+    p.estado AS estado
+FROM producto p
+JOIN marca m ON p.id_marca = m.id_marca
+JOIN producto_categoria pc ON p.id_producto = pc.id_producto
+JOIN categoria c ON pc.id_categoria = c.id_categoria;
 
 /* TABLA CATEGORIA */
 

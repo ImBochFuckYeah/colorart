@@ -49,7 +49,7 @@ class PDOConex
         }
     }
 
-    public function toJson($response)
+    public function toArray($response)
     {
         $jsonArray = [];
         while ($row = $response->fetch(PDO::FETCH_ASSOC)) {
@@ -58,7 +58,7 @@ class PDOConex
         return $jsonArray;
     }
     
-    public function toJsonArray($response)
+    public function toJson($response)
     {
         $jsonArray = [];
         while ($row = $response->fetch(PDO::FETCH_ASSOC)) {
