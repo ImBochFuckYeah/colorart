@@ -1,23 +1,30 @@
 <?php require('../templates/header.php'); ?>
 <?php require('../templates/sidebar.php'); ?>
-<div class="container mt-5 mb-5">
+<?php
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+} else {
+    $id = 0;
+}
+?>
+
+<div class="container mt-5 mb-5" id="body">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/colorart">Home</a></li>
         <li class="breadcrumb-item active">Product</li>
     </ol>
-    <div class="product-description">
+    <div class="product-description" v-for="(producto, index) in bodydata">
         <div class="card mb-4 mt-4">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="<?php $server?>/colorart/assets/img/products/imagecap.png"
-                        class="img-fluid rounded-start" alt="product description">
+                    <img :src="producto.URL" class="img-fluid rounded-start" alt="product description">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                        <h5 class="card-title">{{producto.TITULO}} | Q {{producto.PRECIO}} </h5>
+                        <p class="card-text">{{producto.DESCRIPCION_PRODUCTO}}</p>
+                        <p class="card-text"><small class="text-body-secondary">{{producto.DESCRIPCION_CATEGORIA}}
+                                ({{producto.DESCRIPCION_MARCA}})</small></p>
                         <div class="mb-2">
                             <input type="number" class="form-control" value="0">
                         </div>
@@ -41,5 +48,10 @@
         </div>
     </div>
 </div>
+<script>
+    let id = <?php echo $id ?>;
+</script>
+
 <?php require('../templates/footer.php'); ?>
-<?php require('../templates/scripts.php'); ?>
+<?php require('../templates/scripts.php');
+includeScript('product'); ?>

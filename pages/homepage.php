@@ -50,7 +50,7 @@
                             <img :src="producto.URL" class="card-img-top" alt="loading">
                             <div class="card-body">
                                 <h5 class="card-title">{{producto.TITULO}}</h5>
-                                <p class="card-text">{{categoria.descripcion}} | Q {{producto.PRECIO}}</p>
+                                <p class="card-text">{{producto.DESCRIPCION_MARCA}} | Q {{producto.PRECIO}}</p>
                                 <a class="btn btn-primary col-6" aria-disabled="true"
                                     :href="'product/' + producto.ID_PRODUCTO">Ver</a>
                             </div>
