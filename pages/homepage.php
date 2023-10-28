@@ -6,16 +6,32 @@
     <div class="slider mt-4">
         <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="5000">
+                <div class="carousel-item active" data-bs-interval="2000">
                     <img src="<?php echo $server ?>/colorart/assets/img/slider/3.png" class="d-block w-100"
                         alt="NO_IMAGE">
                 </div>
-                <div class="carousel-item" data-bs-interval="5000">
+                <div class="carousel-item" data-bs-interval="2000">
                     <img src="<?php echo $server ?>/colorart/assets/img/slider/4.png" class="d-block w-100"
                         alt="NO_IMAGE">
                 </div>
-                <div class="carousel-item" data-bs-interval="5000">
+                <div class="carousel-item" data-bs-interval="2000">
                     <img src="<?php echo $server ?>/colorart/assets/img/slider/5.png" class="d-block w-100"
+                        alt="NO_IMAGE">
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <img src="<?php echo $server ?>/colorart/assets/img/slider/9.png" class="d-block w-100"
+                        alt="NO_IMAGE">
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <img src="<?php echo $server ?>/colorart/assets/img/slider/6.png" class="d-block w-100"
+                        alt="NO_IMAGE">
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <img src="<?php echo $server ?>/colorart/assets/img/slider/7.png" class="d-block w-100"
+                        alt="NO_IMAGE">
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <img src="<?php echo $server ?>/colorart/assets/img/slider/8.png" class="d-block w-100"
                         alt="NO_IMAGE">
                 </div>
             </div>
