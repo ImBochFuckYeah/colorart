@@ -12,6 +12,7 @@ CREATE TABLE usuario (
     estatus NUMBER DEFAULT 1
 );
 
+INSERT INTO usuario (username, password) VALUES ('admin', 'admin');
 ------------------------------------------------------------------------
 
 /* TABLA PRODUCTO */

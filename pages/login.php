@@ -34,7 +34,7 @@
                                     </div>
                                 <div class="col-6">
                                     <div class="signup end">
-                                        <a class="btn btn-link" href="#">Crear una cuenta</a>
+                                        <a class="btn btn-link" href="/colorart">Volver al inico</a>
                                     </div>
                                 </div>
                             </div>
